@@ -12,7 +12,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.MapView.LayoutParams;
 
 public class GoogleMapActivity extends MapActivity  {
-
+//test change
 	MapView mapView; 
     MapController mc;
     GeoPoint p;
