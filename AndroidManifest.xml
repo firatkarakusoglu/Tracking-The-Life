@@ -6,21 +6,34 @@
 
     <uses-sdk android:minSdkVersion="7" />
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-		<uses-library android:name="com.google.android.maps" />
-		<!-- Schema is told to use google maps -->
-        <activity android:name="GoogleMapActivity">
-         
-         <!-- Activity is set as the main launcher -->
-         <intent-filter>
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <uses-library android:name="com.google.android.maps" />
+        
+        <!-- Schema is told to  use google maps -->
+        
+        <activity android:name="Login" >
+            <!-- Activity is set as the main launcher -->
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>
+            </intent-filter>
         </activity>
-         
+        
+        <activity android:name="GoogleMapActivity" >
+            <intent-filter>
+                <action android:name="tracking.life.android.LOGIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
     </application>
-    
-   <!-- For google map, internet usage needs to be allowed --> 
-   <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- For google map, internet usage needs to be allowed -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permission to access location information -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
