@@ -1,0 +1,56 @@
+static final String dbName="trackingTheLifeAndroidDB";
+	
+	static final String contactTable="Contact";
+	static final String colContactId="ContactId";
+	static final String colContactUserId="UserId";
+	static final String colContactFirstName="FirstName";
+	static final String colContactLastName="LastName";
+	static final String colContactPicturePath="PicturePath";
+	static final String colContactCategoryId="CategoryId";
+	
+	static final String locationHistoryTable="LocationHistory";
+	static final String colLocationHistoryId="HistoryId";
+	static final String colLocationHistoryTimeStamp="TimeStamp";
+	static final String colLocationHistoryLocationId="LocationId";
+	static final String colLocationHistoryNote="Note";
+	
+	static final String visitedLocationTable="VisitedLocation";
+	static final String colVisitedLocationId="Id";
+	static final String colVisitedLocationCategoryId="EmployeeName";
+	static final String colVisitedLocationAltitute="Age";
+	static final String colVisitedLocationLatitute="MobileNumber";
+	static final String colVisitedLocationIsFavorite="Age";
+	static final String colVisitedLocationComment="MobileNumber";
+	
+	static final String locationCategoryTable="LocationCategory"; 
+	static final String collocationCategoryId="Id";
+	static final String collocationCategoryTitle="Title";
+	
+	static final String contactCategoryTable="ContactCategory";
+//	static final String colContactCategoryId="Id";
+	static final String colContactCategoryTitle="Title";
+	
+	static final String userPrivacySettingsTable="UserPrivacySettings";
+	static final String colPrivacySettingsUserId="UserId";
+	static final String colPrivacySettingsIsTrackable="IsTrackable";
+	
+	static final String trackingInvitationTable="TrackingInvitation";
+	static final String colTrackingInvitationId="Id";
+	static final String colTrackingInvitationUserId="UserId";	
+	static final String colTrackingInvitationContactId="ContactId";	
+	static final String colTrackingInvitationResult="InvitationResult";	
+	
+	static final String trackingListTable="TrackingList";
+	static final String colTrackingListContactId="ContactId";
+	static final String colTrackingIsFavorite = "IsFavorite";	
+	
+	static final String userInfoTable="UserInfo";
+	static final String colUserId="UserId";
+	static final String colUserFirstName="EmployeeName";
+	static final String colUserLastName="Age";
+	static final String colUserMobileNumber="MobileNumber";
+	static final String colUserEmail="Email";
+	static final String colUserUsername="Username";
+	static final String colUserPassword="Password";
+	static final String colUserIsActive="IsActive";
+	

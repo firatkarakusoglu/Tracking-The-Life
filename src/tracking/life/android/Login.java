@@ -1,7 +1,9 @@
 package tracking.life.android;
 
+import tracking.life.android.database.adapter.MemberDbAdapter;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -14,7 +16,10 @@ import android.widget.Toast;
 
 public class Login extends Activity {
 	// TextView is used
-
+	private EditText mEmail, mPassword;
+	private Long memberId;
+	private MemberDbAdapter memberDbHelper;
+	
 	private void turnGPSOnOff(){
 		  String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 		  if(!provider.contains("gps")){
@@ -32,7 +37,9 @@ public class Login extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		memberDbHelper = new MemberDbAdapter(this);
+		memberDbHelper.open();
+		
 		setContentView(R.layout.login);
 
 		// TODO Auto-generated method stub
@@ -43,7 +50,7 @@ public class Login extends Activity {
 		final EditText textPassword = (EditText) findViewById(R.id.editTextPassword);
 
 		final TextView textWarning = (TextView) findViewById(R.id.textViewWarning);
-
+		
 		buttonLogin.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -51,16 +58,22 @@ public class Login extends Activity {
 
 				String stringUsername = textUsername.getText().toString();
 				String stringPassword = textPassword.getText().toString();
-
-				if (stringUsername.equals("admin")
-						&& stringPassword.equals("admin")) {
+//stringUsername.equals("admin") && stringPassword.equals("admin")
+				if (memberLogin(stringUsername, stringPassword)) {
 					startActivity(new Intent("tracking.life.android.LOGIN"));
-				} else
-					textWarning.setText("Username or password is wrong!");
+				} else textWarning.setText("Username or password is wrong!");
 			}
 		});
 
-	
+		
+		buttonRegister.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent("tracking.life.android.SIGNUP_EMAIL"));
+			}
+		});
+		
 		Button buttonGpsOnOff = (Button) findViewById(R.id.buttonGpsOnOff);
 		buttonGpsOnOff.setOnClickListener(new View.OnClickListener() {
 
@@ -69,4 +82,20 @@ public class Login extends Activity {
 			}
 		});
 	}
+	
+    private boolean memberLogin(String email, String password) {  
+		Cursor mCursor = memberDbHelper.selectMemberByEmailPassword(email,password);
+		long memberId = 0;
+		if (mCursor != null) {
+			if (mCursor.moveToFirst()) {
+				memberId = mCursor.getLong(mCursor.getColumnIndex("_id"));
+			}
+			mCursor.close();
+		}
+
+		if (memberId > 0)
+			return true;
+		else
+			return false;
+    }
 }

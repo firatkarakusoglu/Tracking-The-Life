@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World!</string>
     <string name="app_name">Tracking the Life</string>
+    <string name="join">Join</string>
 
 </resources>
