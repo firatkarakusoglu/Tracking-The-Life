@@ -15,11 +15,11 @@ public class LocationListDbAdapter {
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_MEMBER_ID = "memberId";
 	public static final String KEY_CATEGORY_ID = "categoryId";
-	public static final String KEY_TITLE= "title";
-	public static final String KEY_LONGITUDE= "longitude";
-	public static final String KEY_LATITUDE= "latitude";
-	public static final String KEY_IS_FAVORITE= "isFavorite";
-	public static final String KEY_IS_SYNCED= "isSynced";
+	public static final String KEY_TITLE = "title";
+	public static final String KEY_LONGITUDE = "longitude";
+	public static final String KEY_LATITUDE = "latitude";
+	public static final String KEY_IS_FAVORITE = "isFavorite";
+	public static final String KEY_IS_SYNCED = "isSynced";
 
 	private Context context;
 	private SQLiteDatabase database;
@@ -28,7 +28,7 @@ public class LocationListDbAdapter {
 	public LocationListDbAdapter(Context context) {
 		this.context = context;
 	}
-	
+
 	public LocationListDbAdapter open() throws SQLException {
 		dbHelper = new DatabaseHelper(context);
 		database = dbHelper.getWritableDatabase();
@@ -43,81 +43,123 @@ public class LocationListDbAdapter {
 	 * Create a new item If the item is successfully created return the new*
 	 * rowId for that item, otherwise return a -1 to indicate failure.
 	 */
-	public long insertNewLocation(long memberId, String longitude, String latitude) {
-		
+	public long insertNewLocation(long memberId, String longitude,
+			String latitude) {
+
 		ContentValues values = new ContentValues();
 		values.put(KEY_MEMBER_ID, memberId);
 		values.put(KEY_LONGITUDE, longitude);
 		values.put(KEY_LATITUDE, latitude);
-		
+
 		return database.insert(DATABASE_TABLE, null, values);
 	}
 
-	 /** 
-     * Update the item 
-     */  
-    public boolean updateLocationTitle(long rowId, String locationTitle) {  
-        ContentValues updateValues = new ContentValues();
-        updateValues.put(KEY_TITLE, locationTitle);
-        
-        return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "=" + rowId, null) > 0;  
-    }
+	public long insertNewLocationWithName(long memberId, String longitude,
+			String latitude, String title, int favorite) {
+
+		ContentValues values = new ContentValues();
+		values.put(KEY_MEMBER_ID, memberId);
+		values.put(KEY_LONGITUDE, longitude);
+		values.put(KEY_LATITUDE, latitude);
+		values.put(KEY_TITLE, title);
+		values.put(KEY_IS_FAVORITE, favorite);
+		return database.insert(DATABASE_TABLE, null, values);
+	}
+
+	/**
+	 * Update the item
+	 */
+	public boolean updateLocationTitle(long rowId, String locationTitle) {
+		ContentValues updateValues = new ContentValues();
+		updateValues.put(KEY_TITLE, locationTitle);
+
+		return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "="
+				+ rowId, null) > 0;
+	}
+
+	public boolean updateLocationCategoryId(long rowId, long locationCategoryId) {
+		ContentValues updateValues = new ContentValues();
+		updateValues.put(KEY_CATEGORY_ID, locationCategoryId);
+		return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "="
+				+ rowId, null) > 0;
+	}
+
+	public boolean updateIsFavorite(long rowId, int isFavorite) {
+		ContentValues updateValues = new ContentValues();
+		updateValues.put(KEY_IS_FAVORITE, isFavorite);
+		return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "="
+				+ rowId, null) > 0;
+	}
+
+	public boolean makeFavorite(long rowId) {
+		return updateIsFavorite(rowId, 1);
+	}
+
+	public boolean makeNotFavorite(long rowId) {
+		return updateIsFavorite(rowId, 0);
+	}
+
+	public boolean updateIsSynced(long rowId, int isSynced) {
+		ContentValues values = new ContentValues();
+		values.put(KEY_IS_SYNCED, isSynced);
+		return database.update(DATABASE_TABLE, values, KEY_ROWID + "=" + rowId,
+				null) > 0;
+	}
+
+	public boolean markAsSynced(long rowId) {
+		return updateIsSynced(rowId, 1);
+	}
+
+	/**
+	 * Deletes the item with given id
+	 */
+	public boolean deleteByRowId(long rowId) {
+		return database.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+	}
+
+	/**
+	 * Return a Cursor over the list of all the items in the database
+	 */
+	public Cursor selectAllLocationListByMemberId(long memberId, int isFav) {
+
+		String[] selectColumns = new String[] { KEY_ROWID, KEY_MEMBER_ID,
+				KEY_CATEGORY_ID, KEY_TITLE, KEY_LONGITUDE, KEY_LATITUDE,
+				KEY_IS_FAVORITE, KEY_IS_SYNCED, };
+		String selectWhere = KEY_MEMBER_ID + "=" + memberId + " AND "
+				+ KEY_IS_FAVORITE + "=" + isFav;
+		return database.query(DATABASE_TABLE, selectColumns, selectWhere, null,
+				null, null, null);
+	}
 	
-    public boolean updateLocationCategoryId(long rowId, long locationCategoryId) {  
-        ContentValues updateValues = new ContentValues();
-        updateValues.put(KEY_CATEGORY_ID, locationCategoryId);
-        return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "=" + rowId, null) > 0;  
-    }
-    
-    public boolean updateIsFavorite(long rowId, int isFavorite) {  
-        ContentValues updateValues = new ContentValues();
-        updateValues.put(KEY_IS_FAVORITE, isFavorite);
-        return database.update(DATABASE_TABLE, updateValues, KEY_ROWID + "=" + rowId, null) > 0;  
-    }
-    
-    public boolean makeFavorite(long rowId) {  
-        return  updateIsFavorite(rowId, 1);
-    }
-    
-    public boolean makeNotFavorite(long rowId) {  
-        return  updateIsFavorite(rowId, 0);
-    }
-    
-    public boolean updateIsSynced(long rowId, int isSynced) {  
-        ContentValues values = new ContentValues();
-        values.put(KEY_IS_SYNCED, isSynced);
-        return database.update(DATABASE_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0;  
-    }
-    
-    public boolean markAsSynced(long rowId) {  
-        return  updateIsSynced(rowId, 1);
-    }
-    
-    /** 
-     * Deletes the item with given id 
-     */  
-    public boolean deleteByRowId(long rowId) {  
-        return database.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;  
-    }
-    
-    /** 
-     * Return a Cursor over the list of all the items in the database 
-     */  
-    public Cursor selectAllLocationListByMemberId(long memberId) {  
-    	
-    	String[] selectColumns = new String[]
-		{
-			KEY_ROWID,
-			KEY_MEMBER_ID,
-			KEY_CATEGORY_ID,
-			KEY_TITLE,
-			KEY_LONGITUDE,
-			KEY_LATITUDE,
-			KEY_IS_FAVORITE,
-			KEY_IS_SYNCED,
-		}; 
-    	String selectWhere = KEY_MEMBER_ID + "=" + memberId;
-        return database.query(DATABASE_TABLE, selectColumns, selectWhere , null, null, null, null);  
-    }
-    
+	public Cursor selectAllLocationListByMemberId(long memberId) {
+
+		String[] selectColumns = new String[] { KEY_ROWID, KEY_MEMBER_ID,
+				KEY_CATEGORY_ID, KEY_TITLE, KEY_LONGITUDE, KEY_LATITUDE,
+				KEY_IS_FAVORITE, KEY_IS_SYNCED, };
+		String selectWhere = KEY_MEMBER_ID + "=" + memberId;
+		return database.query(DATABASE_TABLE, selectColumns, selectWhere, null,
+				null, null, null);
+	}
+	
+	
+	
+
+	public Cursor selectLocationByID(long mID, long listID) {
+		Cursor mCursor = null;
+		String selectWhere = KEY_MEMBER_ID + "='" + mID + "' AND " + KEY_ROWID
+				+ "='" + listID + "'";
+		mCursor = database.rawQuery("select * from " + DATABASE_TABLE
+				+ " where " + selectWhere + "order by " + KEY_ROWID
+				+ " desc limit 5", null);
+		return mCursor;
+
+	}
+
+	public Cursor selectAll() {
+		Cursor mCursor = null;
+		mCursor = database.rawQuery("select * from " + DATABASE_TABLE, null);
+		return mCursor;
+
+	}
+
 }

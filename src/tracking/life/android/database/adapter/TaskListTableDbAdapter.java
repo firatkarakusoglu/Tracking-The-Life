@@ -46,6 +46,9 @@ public class TaskListTableDbAdapter {
 		
 		ContentValues values = new ContentValues();
 		values.put(KEY_MEMBER_ID, memberId);
+		values.put(KEY_LOCATION_LIST_ID, locationListId);
+		values.put(KEY_TASK_DETAILS, taskDetails);
+		
 		return database.insert(DATABASE_TABLE, null, values);
 	}
 
@@ -85,4 +88,24 @@ public class TaskListTableDbAdapter {
     	String selectWhere = KEY_MEMBER_ID + "=" + memberId + " AND "+ KEY_LOCATION_LIST_ID + "=" + locationId;
         return database.query(DATABASE_TABLE, selectColumns, selectWhere , null, null, null, null);  
     }
+    
+    
+    public Cursor selectAllTaskList(long memberId) {  
+    	
+    	String[] selectColumns = new String[]
+		{
+    			KEY_ROWID,
+    			KEY_TASK_DETAILS,
+    			KEY_IS_NEAR_ALARM_ON,
+    			KEY_TIME_STAMP,
+    			KEY_IS_SYNCED,
+    			KEY_LOCATION_LIST_ID
+		};
+    	String selectWhere = KEY_MEMBER_ID + "=" + memberId ;
+        return database.query(DATABASE_TABLE, selectColumns, selectWhere , null, null, null, null);  
+    }
+    
+    
+    
+    
 }

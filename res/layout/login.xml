@@ -1,51 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/buttonGpsOnOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    <RelativeLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="309dp"
+        android:layout_height="450dp"
+        android:layout_marginLeft="6dp"
+        android:background="#aaaaaa" >
 
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp" >
+        <RelativeLayout
+            android:id="@+id/Layout2"
+            android:layout_width="297dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="6dp"
+            android:background="#dcebff"
+            android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="   Tracking the Life"
+                android:textColor="#60bd89"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="105dp"
+                android:layout_height="105dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ttl" />
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:width="150dp" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="Save location based to do list"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-    <Button
-        android:id="@+id/buttonRegister"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:width="150dp" />
+            <TextView
+                android:id="@+id/description1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/description"
+                android:layout_marginBottom="14dp"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="See where you are"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textViewWarning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:textColor = "#FF0000"
-        >
-    </TextView>
+            <TextView
+                android:id="@+id/description2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageView1"
+                android:layout_marginBottom="16dp"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="See where your favorite friends are"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlayout"
+            android:layout_width="300dp"
+            android:layout_height="6dp"
+            android:layout_below="@+id/Layout2"
+            android:background="#aaaaaa" />
+
+        <RelativeLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="297dp"
+            android:layout_height="292dp"
+            android:layout_below="@+id/rlayout"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/lay" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="175dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="35dp"
+                android:background="#0a6eff"
+                android:text="Log In with Facebook"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="35dp"
+                android:layout_toRightOf="@+id/button1"
+                android:background="#f4ffff"
+                android:text="Cancel"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:id="@+id/lay"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/button1"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/lay" >
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="THIS APP WILL RECEIVE:"
+                    android:textColor="#828282"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Your basic info [?]"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Your birthday"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Your location"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Your checkIns"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text4"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="CheckIns shared with you"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 
 </LinearLayout>

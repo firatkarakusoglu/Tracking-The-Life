@@ -15,7 +15,7 @@ public class LocationHistoryDbAdapter {
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_MEMBER_ID = "memberId";
 	public static final String KEY_LOCATION_LIST_ID = "locationListId";
-	public static final String KEY_TIME_STAMP = "time_stamp";
+	public static final String KEY_TIME_STAMP = "timeStamp";
 	public static final String KEY_TIME_LENGTH = "timeLength";
 	public static final String KEY_IS_SYNCED = "isSynced";
 
@@ -26,7 +26,7 @@ public class LocationHistoryDbAdapter {
 	public LocationHistoryDbAdapter(Context context) {
 		this.context = context;
 	}
-	
+
 	public LocationHistoryDbAdapter open() throws SQLException {
 		dbHelper = new DatabaseHelper(context);
 		database = dbHelper.getWritableDatabase();
@@ -42,13 +42,13 @@ public class LocationHistoryDbAdapter {
 	 * rowId for that item, otherwise return a -1 to indicate failure.
 	 */
 	public long insertLocation(long memberId, long locationListId,
-			int timeLength) {
+			int timeLength, long timeStamp) {
 
 		ContentValues values = new ContentValues();
 		values.put(KEY_MEMBER_ID, memberId);
 		values.put(KEY_LOCATION_LIST_ID, locationListId);
 		values.put(KEY_TIME_LENGTH, timeLength);
-
+		values.put(KEY_TIME_STAMP, timeStamp);
 		return database.insert(DATABASE_TABLE, null, values);
 	}
 
@@ -83,10 +83,37 @@ public class LocationHistoryDbAdapter {
 	 * 
 	 * @return Cursor over all location history data
 	 */
-	public Cursor selectLocationHistoryByMemberId(long memberId) {
-		return database.query(DATABASE_TABLE, new String[] { KEY_ROWID,
-				KEY_LOCATION_LIST_ID, KEY_TIME_STAMP, KEY_TIME_LENGTH },
-				KEY_MEMBER_ID + "=" + memberId, null, null, null, null);
+//	public Cursor selectLocationHistoryByMemberId(long memberId) {
+//		return database.query(DATABASE_TABLE, new String[] { KEY_ROWID,
+//				KEY_LOCATION_LIST_ID, KEY_TIME_STAMP, KEY_TIME_LENGTH },
+//				KEY_MEMBER_ID + "=" + memberId, null, null, null, null);
+//	}
+
+	public Cursor selectLocationHistoryByLocation(long mID, long listID) {
+		Cursor mCursor = null;
+		String selectWhere = KEY_MEMBER_ID + "='" + mID + "' AND "
+				+ KEY_LOCATION_LIST_ID + "='" + listID + "'";
+		mCursor = database.rawQuery("select * from " + DATABASE_TABLE
+				+ " where " + selectWhere + "order by " + KEY_ROWID
+				+ " desc limit 5", null);
+		return mCursor;
+
 	}
 
+	public Cursor selectAll() {
+		Cursor mCursor = null;
+		mCursor = database.rawQuery("select * from " + DATABASE_TABLE
+				 , null);
+		return mCursor;
+
+	}
+
+	public Cursor selectLocationHistoryByMemberId(long mID) {
+		Cursor mCursor = null;
+		mCursor = database.rawQuery("select * from " + DATABASE_TABLE + " where " + KEY_MEMBER_ID +  "="+mID +""
+				 , null);
+		return mCursor;
+
+	}
+	
 }

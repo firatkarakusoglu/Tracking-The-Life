@@ -11,7 +11,7 @@ public class LocationNoteTable {
 	public static final String COLUMN_MEMBER_ID = "memberId";
 	public static final String COLUMN_LOCATION_LIST_ID = "locationListId";
 	public static final String COLUMN_NOTE = "note";
-	public static final String COLUMN_TIME_STAMP = "time_stamp";
+	public static final String COLUMN_TIME_STAMP = "timeStamp";
 	public static final String COLUMN_IS_SYNCED= "isSynced";
 	
 	// Database creation SQL statement

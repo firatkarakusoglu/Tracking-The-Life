@@ -1,22 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent">
- 
-    <com.google.android.maps.MapView 
-        android:id="@+id/mapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:enabled="true"
-        android:clickable="true"
-        android:apiKey="0p7Z30eCUqPdMHEnwCPiiCfc1MXWMWPEEyWU_wQ"
-        />
- 
-    <LinearLayout android:id="@+id/zoom" 
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:layout_alignParentBottom="true" 
-        android:layout_centerHorizontal="true" 
-        /> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="309dp"
+        android:layout_height="450dp"
+        android:background="#aaaaaa"
+        android:layout_marginLeft="6dp" >
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/Layout2"
+            android:layout_width="297dp"
+            android:layout_height="140dp"
+            android:background="#dcebff"
+            android:orientation="vertical"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="6dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="   Tracking the Life"
+                android:textColor="#60bd89"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="105dp"
+                android:layout_height="105dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ttl" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="Save location based to do list"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/description1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/description"
+                android:layout_marginBottom="14dp"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="See where you are"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/description2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageView1"
+                android:layout_marginBottom="16dp"
+                android:layout_toRightOf="@+id/imageView1"
+                android:text="See where your favorite friends are"
+                android:textColor="#000000"
+                android:textSize="11sp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
         
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rlayout"
+            android:layout_width="300dp"
+            android:layout_height="6dp"
+            android:background="#aaaaaa"
+            android:layout_below="@+id/Layout2"/>
+
+        
+        <RelativeLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="297dp"
+            android:layout_height="292dp"
+            android:background="@drawable/lay"
+            android:layout_marginLeft="6dp"
+            android:layout_below="@+id/rlayout">
+
+            <RelativeLayout
+                android:id="@+id/blackLayout"
+                android:layout_width="266dp"
+                android:layout_height="165dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="#464646" >
+                
+                <RelativeLayout
+                    android:id="@+id/blackLayout1"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#000000">
+                    
+                    <TextView
+                		android:id="@+id/facebook"
+                		android:layout_width="wrap_content"
+                		android:layout_height="wrap_content"
+                		android:text="Use your facebook account"
+                		android:textColor="#ffffff"
+                		android:textSize="14sp"
+                		android:textStyle="bold"
+                		android:layout_marginTop="5dp"
+                		android:layout_marginLeft="5dp" />
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="210dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/facebook"
+                        android:text="Sign up with facebook"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#0a62ff"
+                        android:textColor="#ffffff"
+                         />
+                     <TextView 
+                         android:id="@+id/email"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Not Facebook user? No problem"
+                         android:textColor="#ffffff"
+                         android:textSize="14sp"
+                         android:textStyle="bold"
+                         android:layout_below="@+id/button1"
+                         android:layout_marginTop="18dp"
+                         android:layout_marginLeft="5dp"
+                         />
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="210dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/email"
+                        android:text="Sign up with Email"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#5ad18f"
+                        android:textColor="#ffffff"
+                        />
+                    
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout 
+                android:id="@+id/exp"
+                android:layout_width="266dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/blackLayout"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                
+                <TextView 
+                    android:id="@+id/explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="'Tracking the Life' is a mobile application that will let users save their locations automatically which will be shown as points on the map and at the same time users will be able to track their friends' locations according to privacy settings. The application will be using gps, wifi and cellular id to track users' locations."
+                    android:textColor="#000000"
+                    android:textSize="11sp"
+                         
+                    />
+            </RelativeLayout>
+            
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
